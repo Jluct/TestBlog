@@ -1,0 +1,3 @@
+jluct_blog_homepage:
+    path:     /
+    defaults: { _controller: JluctBlogBundle:Default:index }

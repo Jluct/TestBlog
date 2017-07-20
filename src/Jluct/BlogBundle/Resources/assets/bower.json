@@ -1,0 +1,6 @@
+{
+  "name": "JluctBlog",
+  "dependencies": {
+    "bootstrap": "3.*"
+  }
+}
