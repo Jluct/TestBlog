@@ -1,5 +1,18 @@
 {% extends 'JluctBlogBundle::base.html.twig' %}
 
 {% block body %}
+    {% for post in posts %}
+        {{ include('JluctBlogBundle:components:post.html.twig',{'post':post}) }}
+    {% endfor %}
+
+    {% if posts.haveToPaginate %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navigation text-center">
+                    {{ pagerfanta(posts, 'twitter_bootstrap3_translated', { routeName: 'jluct_blog_homepage'}) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock %}

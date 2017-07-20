@@ -2,6 +2,10 @@
 
 namespace Jluct\BlogBundle\Repository;
 
+use Doctrine\ORM\Query;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+
 /**
  * PostRepository
  *
@@ -10,4 +14,36 @@ namespace Jluct\BlogBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param int $page current page
+     * @param int $limit limit post
+     * @return Pagerfanta
+     */
+    public function getPostsByPages($page = 1, $limit = 10)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT p
+                FROM JluctBlogBundle:Post p
+                WHERE p.public = 1
+                ORDER BY p.id DESC
+            ');
+
+        return $this->createPaginator($query, $page, $limit);
+    }
+
+    /**
+     * @param Query $query
+     * @param  int $page current page
+     * @param int $limit limit post
+     * @return Pagerfanta
+     */
+    private function createPaginator(Query $query, $page, $limit)
+    {
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
+        $paginator->setMaxPerPage($limit);
+        $paginator->setCurrentPage($page);
+
+        return $paginator;
+    }
 }
