@@ -1,0 +1,26 @@
+{% extends 'JluctBlogBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="pager">
+                <li class="previous"><a href="{{ path('jluct_blog_homepage') }}"><span aria-hidden="true">&larr;</span>Back</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="{{ post.image }}">
+        </div>
+        <div class="col-sm-9">
+            <h1>{{ post.title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p class="post-content">{{ post.content }}</p>
+        </div>
+    </div>
+{% endblock %}
