@@ -15,7 +15,8 @@ class JbUserCreateAdminCommand extends ContainerAwareCommand
         $this
             ->setName('jb:user:create:admin')
             ->setDescription('Creates a user with administrator role')
-            ->addOption('username', 'u', InputOption::VALUE_REQUIRED, 'Username')
+            ->addOption('firstname', 'f', InputOption::VALUE_REQUIRED, 'First name')
+            ->addOption('lastname', 'l', InputOption::VALUE_REQUIRED, 'Last name')
             ->addOption('password', 'p', InputOption::VALUE_REQUIRED, 'Password', 123456)
             ->addOption('email', 'm', InputOption::VALUE_REQUIRED, 'Email')
             ->addOption('active', 'a', InputOption::VALUE_OPTIONAL, 'Active user', true);
@@ -24,9 +25,11 @@ class JbUserCreateAdminCommand extends ContainerAwareCommand
     /**
      * Created admin user
      * Example:
-     * php bin/console jb:user:create:admin -u admin -p 123456 -m admin@mail.ru -a true
-     * php bin/console jb:user:create:admin --username=admin --password=123456 --email=admin@mail.ru --active=true
-     * 
+     * php bin/console ...
+     * jb:user:create:admin -f admin -l administrator -p 123456 -m admin1@mail.ru -a true
+     * OR
+     * jb:user:create:admin --firstname=admin --lastname=administrator --password=123456 --email=admin@mail.ru --active=true
+     *
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int
@@ -36,7 +39,8 @@ class JbUserCreateAdminCommand extends ContainerAwareCommand
         $service = $this->getContainer()->get('jluct_blog.user.create');
         $data = [];
 
-        $data['username'] = $input->getOption('username');
+        $data['firstname'] = $input->getOption('firstname');
+        $data['lastname'] = $input->getOption('lastname');
         $data['password'] = $input->getOption('password');
         $data['email'] = $input->getOption('email');
         $data['active'] = $input->getOption('active') ? 1 : 0;

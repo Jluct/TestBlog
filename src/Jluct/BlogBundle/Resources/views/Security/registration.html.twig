@@ -1,0 +1,21 @@
+{% extends 'JluctBlogBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="pager">
+                <li class="previous"><a href="{{ path('jluct_blog_homepage') }}"><span aria-hidden="true">&larr;</span>Back</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <input type="submit" class="btn btn-primary">
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

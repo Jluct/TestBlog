@@ -8,6 +8,7 @@
 
 namespace Jluct\BlogBundle\Services\User;
 
+use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\EntityManager;
 use Jluct\BlogBundle\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -34,7 +35,7 @@ class CreateUser
     
     /**
      * Save user in DB
-     * 
+     *
      * @param $array
      * @return bool
      */
@@ -42,7 +43,8 @@ class CreateUser
     {
         $user = new User();
         $user->setEmail($array['email']);
-        $user->setUsername($array['username']);
+        $user->setFirstname($array['firstname']);
+        $user->setLastname($array['lastname']);
         $user->setIsActive($array['active']);
         $user->setPassword($array['password']);
 
@@ -55,9 +57,13 @@ class CreateUser
 
         $this->manager->persist($user);
 
-        $this->manager->flush();
+        try {
+            $this->manager->flush();
+            return true;
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
 
-        return true;
 
     }
     

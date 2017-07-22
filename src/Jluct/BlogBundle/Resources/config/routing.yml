@@ -10,3 +10,6 @@ jluct_blog_post:
     requirements:
         id: \d+
 
+jluct_blog_registration:
+    path:     /registration
+    defaults: { _controller: JluctBlogBundle:Security:registration}
