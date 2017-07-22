@@ -2,3 +2,7 @@ services:
 #    jluct_blog.example:
 #        class: Jluct\BlogBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    jluct_blog.user.create:
+          class: Jluct\BlogBundle\Services\User\CreateUser
+          arguments: ['@doctrine.orm.entity_manager','@security.password_encoder']

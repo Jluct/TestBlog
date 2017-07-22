@@ -156,3 +156,4 @@ class Post
         return $this->public;
     }
 }
+
