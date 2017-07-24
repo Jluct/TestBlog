@@ -33,6 +33,23 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
+     * @param int $page current page
+     * @param int $limit limit post
+     * @return Pagerfanta
+     */
+    public function getAllPostsByPages($page = 1, $limit = 10)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+                SELECT p
+                FROM JluctBlogBundle:Post p
+                ORDER BY p.id DESC
+            ');
+
+        return $this->createPaginator($query, $page, $limit);
+    }
+
+    /**
      * @param Query $query
      * @param  int $page current page
      * @param int $limit limit post
