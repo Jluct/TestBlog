@@ -26,16 +26,13 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            {#<ul class="nav navbar-nav">#}
-            {#<li><a href="#">Home</a></li>#}
 
-            {#</ul>#}
             <ul class="nav navbar-nav navbar-right">
                 {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a href="#">Sign In</a></li>
+                    <li><a href="{{ path('jluct_blog_login') }}">Sign In</a></li>
                     <li><a href="{{ path('jluct_blog_registration') }}">Sign Up</a></li>
                 {% else %}
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="{{ path('jluct_blog_logout') }}">Logout</a></li>
                 {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->

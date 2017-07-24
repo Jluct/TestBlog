@@ -13,3 +13,15 @@ jluct_blog_post:
 jluct_blog_registration:
     path:     /registration
     defaults: { _controller: JluctBlogBundle:Security:registration}
+
+jluct_blog_login:
+    path:     /login
+    defaults: { _controller: JluctBlogBundle:Security:login}
+
+jluct_blog_logout:
+    path:     /logout
+#    defaults: { _controller: JluctBlogBundle:Security:login}
+
+jluct_blog_check:
+    path: /login_check
+

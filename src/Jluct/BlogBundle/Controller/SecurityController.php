@@ -13,10 +13,25 @@ use Jluct\BlogBundle\Form\UserType;
 use Jluct\BlogBundle\Services\User\CreateUser;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\VarDumper\VarDumper;
 
 class SecurityController extends Controller
 {
+    public function loginAction()
+    {
+        $helper = $this->get('security.authentication_utils');
+
+        return $this->render('JluctBlogBundle:Security:login.html.twig', [
+            'last_username' => $helper->getLastUsername(),
+            'error' => $helper->getLastAuthenticationError()
+        ]);
+    }
+
+    public function checkAction()
+    {
+        return $this->render('JluctBlogBundle:Security:login.html.twig', []);
+
+    }
+
 
     /**
      * @param Request $request
@@ -40,8 +55,7 @@ class SecurityController extends Controller
             $data = $request->get('jluct_blogbundle_user');
             $data['active'] = true;
             $data['password'] = $data['password']['first'];
-
-//            VarDumper::dump($request);
+            
             $registerService->createUser($data);
 
 
