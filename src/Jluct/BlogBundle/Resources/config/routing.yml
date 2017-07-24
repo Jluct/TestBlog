@@ -20,8 +20,10 @@ jluct_blog_login:
 
 jluct_blog_logout:
     path:     /logout
-#    defaults: { _controller: JluctBlogBundle:Security:login}
 
 jluct_blog_check:
     path: /login_check
 
+imports:
+   resource: "admin/routing.yml"
+   prefix:   /admin

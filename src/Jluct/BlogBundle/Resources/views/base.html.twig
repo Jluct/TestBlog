@@ -24,8 +24,15 @@
             <a class="navbar-brand" href="{{ path('jluct_blog_homepage') }}">JluctBlog</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+        {% if is_granted('ROLE_ADMIN') %}
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('jluct_blog_admin_post_view') }}">Admin Panel</a></li>
+
+            </ul>
+
+            {% endif %}
 
             <ul class="nav navbar-nav navbar-right">
                 {% if not is_granted('IS_AUTHENTICATED_FULLY') %}

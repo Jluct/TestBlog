@@ -1,0 +1,5 @@
+jluct_blog_admin_post_view:
+    path:     /post/{page}
+    defaults: { _controller: JluctBlogBundle:Admin/PostAdmin:index, page: 1 }
+    requirements:
+        page: \d+
