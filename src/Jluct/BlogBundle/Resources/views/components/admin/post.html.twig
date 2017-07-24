@@ -10,7 +10,7 @@
     <div class="col-md-2">
         <a role="button"
            class="btn btn-{% if post.public %}success{% else %}warning{% endif %} btn-block"
-           href="#">
+           href="{{ path('jluct_blog_admin_post_public',{'id':post.id}) }}">
             {% if post.public %}Public{% else %}No public{% endif %}
         </a>
     </div>

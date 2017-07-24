@@ -3,3 +3,9 @@ jluct_blog_admin_post_view:
     defaults: { _controller: JluctBlogBundle:Admin/PostAdmin:index, page: 1 }
     requirements:
         page: \d+
+
+jluct_blog_admin_post_public:
+    path:     /post/public/{id}
+    defaults: { _controller: JluctBlogBundle:Admin/PostAdmin:public }
+    requirements:
+        id: \d+
