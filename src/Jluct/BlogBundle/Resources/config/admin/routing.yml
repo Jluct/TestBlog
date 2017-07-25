@@ -9,3 +9,13 @@ jluct_blog_admin_post_public:
     defaults: { _controller: JluctBlogBundle:Admin/PostAdmin:public }
     requirements:
         id: \d+
+
+jluct_blog_admin_post_create:
+    path:     /post/create
+    defaults: { _controller: JluctBlogBundle:Admin/PostAdmin:create }
+
+jluct_blog_admin_post_update:
+    path:     /post/update/{id}
+    defaults: { _controller: JluctBlogBundle:Admin/PostAdmin:update }
+    requirements:
+        id: \d+

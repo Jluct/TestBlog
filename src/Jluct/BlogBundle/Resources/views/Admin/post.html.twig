@@ -1,0 +1,44 @@
+{% extends 'JluctBlogBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="row" xmlns="http://www.w3.org/1999/html">
+        <div class="col-md-2">
+            <ul class="pager">
+                <li class="previous">
+                    <a href="{{ path('jluct_blog_admin_post_view') }}"><span aria-hidden="true">&larr;</span>Back</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10"><h1>Create post</h1></div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-sm-9">
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.content) }}
+                </div>
+                <div class="col-sm-3">
+                    {% if image %}
+                        {#<pre>{{ form.image.vars.data }}</pre>#}
+                        <img src="{{ image }}" alt="">
+                        <div>
+                            <a href="#" role="button" class="btn btn-warning btn-block">Delete image</a>
+                        </div>
+
+                    {% endif %}
+                    {{ form_row(form.image) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <input type="submit" class="btn btn-primary btn-block">
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}

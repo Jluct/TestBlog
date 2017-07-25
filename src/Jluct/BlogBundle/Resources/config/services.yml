@@ -6,3 +6,4 @@ services:
     jluct_blog.user.create:
           class: Jluct\BlogBundle\Services\User\CreateUser
           arguments: ['@doctrine.orm.entity_manager','@security.password_encoder']
+

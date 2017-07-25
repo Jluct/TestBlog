@@ -5,7 +5,8 @@
     <div class="col-md-4">
         <h4><a href="{{ path('jluct_blog_post',{'id':post.id}) }}">{{ post.title }}</a></h4>
     </div>
-    <div class="col-md-2"><a role="button" class="btn btn-info btn-block" href="#">Update</a></div>
+    <div class="col-md-2"><a role="button" class="btn btn-info btn-block"
+                             href="{{ path('jluct_blog_admin_post_update',{'id':post.id}) }}">Update</a></div>
 
     <div class="col-md-2">
         <a role="button"
