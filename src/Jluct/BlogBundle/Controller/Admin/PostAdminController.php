@@ -126,6 +126,9 @@ class PostAdminController extends Controller
                 );
 
                 $post->setImage('/image/' . $fileName);
+                if (file_exists($this->get('kernel')->getRootDir() . '/../web' . $image))
+                    unlink($this->get('kernel')->getRootDir() . '/../web' . $image);
+
             } else {
                 $post->setImage($image);
             }
