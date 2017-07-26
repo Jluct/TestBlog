@@ -22,14 +22,17 @@
                 </div>
                 <div class="col-sm-3">
                     {% if image %}
-                        {#<pre>{{ form.image.vars.data }}</pre>#}
                         <img src="{{ image }}" alt="">
                         <div>
-                            <a href="#" role="button" class="btn btn-warning btn-block">Delete image</a>
+                            <a href="" role="button" class="btn btn-warning btn-block">Delete image</a>
                         </div>
+                        {{ form_row(form.image, { 'attr': {'disabled':''} }) }}
+
+                    {% else %}
+                        {{ form_row(form.image) }}
 
                     {% endif %}
-                    {{ form_row(form.image) }}
+
                 </div>
             </div>
             <div class="row">

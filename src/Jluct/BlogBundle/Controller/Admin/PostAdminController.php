@@ -97,12 +97,67 @@ class PostAdminController extends Controller
             return $this->redirectToRoute('jluct_blog_admin_post_view');
 
         }
+        
+        return $this->render('JluctBlogBundle:Admin:post.html.twig', [
+            'form' => $form->createView(),
+            'image' => $post->getImage()
+        ]);
+    }
+
+    public function updateAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository(Post::class)->find($id);
+        $image = $post->getImage();
+        $post->setImage(new File($post->getImage(), false));
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            VarDumper::dump($post);
+            $file = $post->getImage();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+                $file->move(
+                    'image',
+                    $fileName
+                );
+
+                $post->setImage('/image/' . $fileName);
+            } else {
+                $post->setImage($image);
+            }
+
+            if (!$form->isValid()) {
+                $this->addFlash(
+                    'danger',
+                    'Data is not valid'
+                );
+                return $this->render('JluctBlogBundle:Admin:post.html.twig', [
+                    'form' => $form->createView(),
+                    'image' => $post->getImage()
+                ]);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Post created!'
+            );
+
+            return $this->redirectToRoute('jluct_blog_admin_post_view');
+        }
 
         VarDumper::dump($request);
         VarDumper::dump($form);
         return $this->render('JluctBlogBundle:Admin:post.html.twig', [
             'form' => $form->createView(),
-            'image' => $post->getImage()
+            'image' => $image
         ]);
     }
     
