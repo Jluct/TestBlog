@@ -22,9 +22,12 @@
                 </div>
                 <div class="col-sm-3">
                     {% if image %}
-                        <img src="{{ image }}" alt="">
+                        <img id="post_img" src="{{ image }}" alt="">
                         <div>
-                            <a href="" role="button" class="btn btn-warning btn-block">Delete image</a>
+                            <a id="img_button"
+                               href="#"
+                               role="button"
+                               class="btn btn-warning btn-block">Delete image</a>
                         </div>
                         {{ form_row(form.image, { 'attr': {'disabled':''} }) }}
 
@@ -44,4 +47,17 @@
 
         </div>
     </div>
+{% endblock %}
+{% block js %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            $('#img_button').click(function () {
+                $('#post_img').attr('src','');
+                $('input[type=file]').removeAttr('disabled')
+            })
+        })
+    </script>
+
 {% endblock %}
