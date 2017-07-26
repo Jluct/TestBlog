@@ -19,3 +19,9 @@ jluct_blog_admin_post_update:
     defaults: { _controller: JluctBlogBundle:Admin/PostAdmin:update }
     requirements:
         id: \d+
+
+jluct_blog_admin_post_delete:
+    path:     /post/delete/{id}
+    defaults: { _controller: JluctBlogBundle:Admin/PostAdmin:delete }
+    requirements:
+        id: \d+

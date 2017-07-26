@@ -163,5 +163,24 @@ class PostAdminController extends Controller
             'image' => $image
         ]);
     }
+
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository(Post::class)->find($id);
+
+        if (file_exists($this->get('kernel')->getRootDir() . '/../web' . $post->getImage()))
+            unlink($this->get('kernel')->getRootDir() . '/../web' . $post->getImage());
+
+        $em->remove($post);
+        $em->flush();
+
+        $this->addFlash(
+            'success',
+            'Post deleted!'
+        );
+        return $this->redirectToRoute('jluct_blog_admin_post_view');
+
+    }
     
 }

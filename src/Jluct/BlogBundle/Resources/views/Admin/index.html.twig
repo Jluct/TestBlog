@@ -23,4 +23,34 @@
         </div>
     {% endif %}
 
+    <div class="modal fade del_modal" tabindex="-1" role="dialog" aria-labelledby="delete_modal">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <h3 class="text-center">Delete post?</h3>
+                <a role="button" class="btn btn-block btn-danger"
+                   href="#" id="delete-link">Yes</a>
+                <a role="button" class="btn btn-block btn-info" href="#" id="abort-link" data-dismiss="modal">No</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{#jluct_blog_admin_post_delete#}
+
+{% block js %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('.delete-button').click(function () {
+                var id = $(this).attr('data-post');
+                console.log(id);
+                $('#delete-link').attr('href', '/admin/post/delete/'+id);
+            });
+
+            $('#abort-link').click(function () {
+                $('this').attr('href', '#');
+            });
+        })
+    </script>
 {% endblock %}
